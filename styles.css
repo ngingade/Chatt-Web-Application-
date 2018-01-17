@@ -1,0 +1,142 @@
+body {
+    margin: 0;    
+    font-family: monospace;}
+
+.header {
+    border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    vertical-align: middle;
+    align-items: center;
+    font-size: 20px;
+}
+
+.content-wrapper {
+    display: flex;
+    height: calc(100vh - 61px);
+}
+
+.user-list {
+    width: 20%;
+    border-right: 1px solid rgba(128, 128, 128, 0.2);
+}
+
+.user-list-wrapper {
+    padding: 8px 16px;
+    display: flex;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+    transition: transform 0.1s ease;
+}
+
+img {
+    border: 1px solid rgba(128, 128, 128, 0.2);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.user-list-wrapper.active {
+    transform: scale(1.02);
+    background: #9cb1ff;
+    border: none;
+    box-shadow: 0 0px 5px 0px rgba(0, 0, 0, 0.4);
+    transition: transform 0.1s ease;
+}
+
+.user-details-wrapper {
+    padding-left: 8px;    
+    padding-top: 5px;    
+    width: calc(100% - 47px);
+    transition: transform 0.1s ease;
+}
+
+.user-message {
+    width: 80%;
+    position: relative;
+}
+
+.user-message-wrapper {
+    padding: 16px 70px;
+        max-height: calc(100% - 95px);
+    overflow: auto;
+}
+
+.user-last-message {
+    color: rgba(128, 128, 128, 0.5);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 99%;
+    overflow: hidden;
+}
+
+.current-user, .another-user {
+    display: flex;
+    margin-bottom: 8px;
+}
+
+.another-user {
+    flex-direction: row-reverse;
+}
+
+.user-message-text {
+    background: rgba(128, 128, 128, 0.4);
+    padding: 8px;
+    border-radius: 5px;
+    position: relative;
+    min-width: 80px;
+}
+
+.another-user .user-message-text {
+    background: #add9ff;
+}
+
+.user-message-image {
+    margin: 0 8px;
+}
+
+.input-text {
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+    min-height: 63px;
+    max-height: 50px;
+    outline: none;
+    padding: 17px 25px 8px 25px;
+}
+
+.send-message-wrapper {
+    position: absolute;
+    bottom: 0;
+    overflow: hidden;
+    left: 0;
+    bottom: 0;
+    width: 100%;    
+}
+
+button.submit-button {
+    position: absolute;
+    right: 0;
+    background: transparent;
+    border: none;
+    top: 1px;
+    bottom: 1px;
+    background: white;
+    padding-right: 20px;
+    outline: none;
+}
+
+.active .user-last-message {
+    display: none;
+}
+.created-date-mess {
+       margin-top: 8px;
+    color: white;
+        text-align: right;
+}
+
+.another-user .created-date-mess {
+    left: -57px;
+}
+
