@@ -140,3 +140,10 @@ button.submit-button {
     left: -57px;
 }
 
+input#searchBox {
+    width: 100%;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.2)!important;
+    border: 0px solid;
+    outline: none;
+    padding: 10px;
+}

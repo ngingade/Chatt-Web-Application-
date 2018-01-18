@@ -34,6 +34,31 @@ function createNodeImg(ele, cls, src) {
     return temp;
 }
 
+function filterUser(userListData) {
+    //console.log(userListData);
+    var val = searchBox.value.toLowerCase();
+    var userList = userListData;
+    for(var i=0; i<userList.length; i++) {
+        var userName = userList[i].user.toLowerCase();
+        var userId = 'userId_'+i;    
+        var userEle = document.getElementById(userId);
+        var chattMessWrapId = 'chatt-message-'+userList[i].id;
+        if(userName.indexOf(val)>-1) {            
+            userEle.style.display = '';
+            if(userEle.classList.contains('active')) {
+                document.getElementById(chattMessWrapId).style.display = '';                
+            }
+            //document.getElementById(chattMessWrapId).style.display = '';
+        }
+        else{
+            if(userEle.classList.contains('active')) {
+                document.getElementById(chattMessWrapId).style.display = 'none';                
+            }
+            userEle.style.display = 'none';
+            //document.getElementById(chattMessWrapId).style.display = 'none';
+        }
+    }
+}
 
 function displayUserList(list) {
     var userListData = JSON.parse(localStorage.getItem("updatedMessagesList"));
@@ -42,6 +67,10 @@ function displayUserList(list) {
     }
     var UserTemp = {};
     var maiWrapper = document.getElementById('userList');
+    var searchBox = document.getElementById('searchBox');
+    searchBox.addEventListener('keyup', function() {
+        filterUser(userListData);
+    });
     console.log(userListData);
     for(var i=0; i<userListData.length; i++) {
         var listWrapper = createNodeDiv('div', 'user-list-wrapper', 'userId_'+i);        
@@ -74,7 +103,8 @@ function displayUserList(list) {
         (function(user, id, len){
             listWrapper.addEventListener('click', function() {
                 showUserMessages(user, id, len, userListData);
-            })  
+            });            
+            
         })(userListData[i],listWrapper.id,userListData.length, userListData);
     }
 }
@@ -151,11 +181,15 @@ function getTime(date) {
 function showUserMessages(user, id, len, userMessageList) {
     console.log(user);    
     var temp = document.getElementById(id); 
-    var chattMess = document.getElementById('chatt-message');
+    var chattMess = document.getElementById('chattMessageWrapper').childNodes[1];
+    if(chattMess.style.display == 'none') {
+        chattMess.style.display = '';
+    }
     chattMess.textContent = '';
     var prevId;
     for(var i=0; i<len; i++){
         var userID = 'userId_'+i;
+        chattMess.id = 'chatt-message-'+user.id;
         if(userID == id) {
             temp.classList = 'active user-list-wrapper';  
             
